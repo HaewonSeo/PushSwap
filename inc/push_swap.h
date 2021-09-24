@@ -6,7 +6,7 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:30:58 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/18 00:13:43 by haseo            ###   ########.fr       */
+/*   Updated: 2021/09/24 21:13:46 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include "../libft/libft.h"
 #include <stdio.h>
+
+#define MAXINT  2147483647
+#define MININT  -2147483648
 
 typedef struct	s_node {
     int data;
@@ -27,5 +30,12 @@ typedef struct	s_stack {
     t_node *top;
     t_node *bottom;
 }				t_stack;
+
+
+void swap(t_stack *stack);
+void sa(t_stack *a);
+void sb(t_stack *b);
+
+
 
 #endif

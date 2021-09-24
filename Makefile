@@ -6,7 +6,7 @@
 #    By: haseo <haseo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/18 00:09:02 by haseo             #+#    #+#              #
-#    Updated: 2021/09/18 00:13:55 by haseo            ###   ########.fr        #
+#    Updated: 2021/09/24 21:36:44 by haseo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,8 @@ WHITE			= \033[1;37m
 # ----------------------------------
 
 SRCS_LIST		=	push_swap.c \
+					swap.c
+
 
 SRCS			= $(addprefix $(SRC_DIR)/, $(SRCS_LIST))
 OBJS			= $(addprefix $(OBJ_DIR)/, $(SRCS_LIST:.c=.o))
@@ -67,6 +69,10 @@ LIBFT_DIR		= ./libft
 INC_DIR			= ./inc
 SRC_DIR			= ./src
 OBJ_DIR			= ./obj
+VPATH_DIR		= ./src \
+					./src/operation
+
+vpath %.c $(VPATH_DIR)
 
 # ----------------------------------
 # Library
@@ -87,8 +93,8 @@ $(OBJ_DIR):
 					@$(MKDIR) $@
 					@$(ECHO) "$(GREEN)[Success]\t $(ORANGE)Create $(OBJ_DIR)$(NOCOLOR)"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-					@$(CC) -c $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -o $@ $<
+$(OBJ_DIR)/%.o: %.c 
+					@$(CC) -c $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -o $@ $^
 					@$(ECHO) "$(GREEN)[Success]\t $(ORANGE)Create $@$(NOCOLOR)"
 
 $(LIBFT):

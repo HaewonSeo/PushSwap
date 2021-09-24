@@ -6,51 +6,83 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 18:11:31 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/18 00:19:33 by haseo            ###   ########.fr       */
+/*   Updated: 2021/09/24 22:03:03 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void init_stack(t_stack **stack)
+long long argtoi(char *arg)
 {
-    *stack = (t_stack *)malloc(sizeof(t_stack));
-    if (!(*stack))
-        ft_exit("[Error] fail to allocate stack\n");
-    (*stack)->size = 0;
-    (*stack)->top = NULL;
-    (*stack)->bottom = NULL;
-    return ;  
-}
+    int len;
+    int sign;
+    long long num;
 
-void init_node(t_node **node)
-{
-    *node = (t_node *)malloc(sizeof(t_node));
-    if (!(*node))
-        return ;
-    (*node)->data = 0;
-    (*node)->prev = NULL;
-    (*node)->next = NULL; 
-    return ;
-}
-
-void push_node(t_stack **stack, t_node *node)
-{
-    if (!(*stack)->size)
+    len = 0;
+    sign = 1;
+    num = 0;
+    if (arg[len] == '+' || arg[len] == '-')
     {
-        (*stack)->top = node;
-        (*stack)->bottom = node;
+        if (arg[len] == '-')
+            sign = -1;
+        len++;
+    }
+    // 0 padding은 고려 안함
+    while (arg[len])
+    {
+        if (!ft_isdigit(arg[len]))
+            ft_exit("[Error] Invalid argument value\n");
+        num = num * 10 + (arg[len++] - '0');
+    }
+    num *= sign;
+    if (len > 11 || num > MAXINT || num < MININT)
+        ft_exit("[Error] Invalid argument range\n");
+    return (num);
+}
+
+t_stack *alloc_stack(void)
+{
+    t_stack *stack;
+
+    stack = (t_stack *)malloc(sizeof(t_stack));
+    if (!stack)
+        ft_exit("[Error] fail to allocate a stack\n");
+    stack->size = 0;
+    stack->top = NULL;
+    stack->bottom = NULL;
+    return (stack);
+}
+
+t_node *alloc_node(void)
+{
+    t_node *node;
+    
+    node = (t_node *)malloc(sizeof(t_node));
+    if (!node)
+        ft_exit("[Error] fail to allocate a node\n");
+    node->data = 0;
+    node->prev = NULL;
+    node->next = NULL; 
+    return (node);
+}
+
+void push_node(t_stack *stack, t_node *new)
+{
+    if (!stack->size)
+    {
+        stack->top = new;
+        stack->bottom = new;
     }
     else
     {
-        (*stack)->top->next = node;
-        node->prev = (*stack)->top;
-        (*stack)->top = node;        
+        stack->bottom->next = new;
+        new->prev = stack->bottom;
+        stack->bottom = new;        
     }
-    (*stack)->size++;
+    stack->size++;
 }
 
-void push_arg(t_stack **stack, char *arg)
+void push_arg(t_stack *stack, char *arg)
 {
     char **split;
     int i;
@@ -58,19 +90,19 @@ void push_arg(t_stack **stack, char *arg)
     
     split = ft_split(arg, ' ');
     if (!split || !(*split))
-        ft_exit("[Error] fail to allocate split\n");
+        ft_exit("[Error] Fail to allocate split\n");
     i = -1;
     while(split[++i])
     {
-        init_node(&node);
-        node->data = ft_atoi(split[i]);
+        node = alloc_node();
+        node->data = (int)argtoi(split[i]);
         push_node(stack, node);
         free(split[i]);
     }
     free(split);
 }
 
-void push_argv(t_stack **stack, int argc, char *argv[])
+void push_argv(t_stack *stack, int argc, char *argv[])
 {
     int i;
 
@@ -81,30 +113,91 @@ void push_argv(t_stack **stack, int argc, char *argv[])
 
 void print_stack(t_stack *stack)
 {
-    t_node *node;
+    t_node *cur;
 
-    node = stack->bottom;
-    while (node->next)
+    cur = stack->top;
+    while (cur)
     {
-        ft_putnbr_fd(node->data, 1);
+        ft_putnbr_fd(cur->data, 1);
         ft_putchar_fd('\n', 1);
-        node = node->next;
+        cur = cur->next;
     }
+    printf("[size=%d, top=%d, bottom=%d]\n", stack->size, stack->top->data, stack->bottom->data);
+}
+
+void free_stack(t_stack *stack)
+{
+    t_node *node;
+    t_node *tmp;
+
+    node = stack->top;
+    tmp = NULL;
+    while (node)
+    {
+        if (node->next)
+            tmp = node->next;
+        else
+            tmp = NULL;
+        free(node);
+        node = tmp;
+    }
+    free(stack);
+}
+
+void valid_dup(t_stack *stack)
+{
+    t_node *cur;
+    t_node *tmp;
+
+    cur = stack->top;
+    while (cur->next)
+    {
+        tmp = cur->next;
+        while (tmp)
+        {
+            if (cur->data == tmp->data)
+                ft_exit("[Error] Duplicate data exists in stack\n");
+            tmp = tmp->next;
+        }
+        cur = cur->next;
+    }
+}
+
+void valid_sort(t_stack *stack)
+{
+    t_node *cur;
+
+    cur = stack->top;
+    while (cur->next)
+    {
+        if (cur->data >= cur->next->data)
+            return ;
+        cur = cur->next;
+    }
+    ft_exit("[Error] Stack is already sorted\n");
 }
 
 int main(int argc, char *argv[])
 {
-    t_stack *sA;
-    //t_stack *sB;
+    t_stack *a;
+    t_stack *b;
     
     if (argc == 1)
         ft_exit("[Usage] ./push_swap arguments\n");
-    // make sA, sB
+        
+    a = alloc_stack();
+    push_argv(a, argc, argv);
+    print_stack(a); //
+    valid_dup(a);
+    valid_sort(a);
+    b = alloc_stack();
 
-    ///check_arg(argc, argv);
-    push_argv(&sA, argc, argv);
-    print_stack(sA);
-    // init_stack(&sA);
-    // init_stack(&sB);
-    return 0;
+    sa(a);
+    print_stack(a);
+    
+    //push_swap();
+    
+    free_stack(a);
+    free_stack(b);
+    return (0);
 }
