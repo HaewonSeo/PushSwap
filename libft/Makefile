@@ -6,7 +6,7 @@
 #    By: haseo <haseo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 16:49:36 by haseo             #+#    #+#              #
-#    Updated: 2021/09/18 00:35:59 by haseo            ###   ########.fr        #
+#    Updated: 2021/09/23 15:28:39 by haseo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,31 +112,30 @@ B_SRCS =	ft_lstnew.c \
 # Directory
 # ----------------------------------
 
-LIBFT_DIR		= ./
-INC_DIR			= ./
-SRC_DIR			= ./
+LIBFT_DIR		= .
+INC_DIR			= .
+SRC_DIR			= .
 OBJ_DIR			= ./obj
 
 OBJS		= $(addprefix $(OBJ_DIR)/, ${SRCS:.c=.o})
 B_OBJS		= $(addprefix $(OBJ_DIR)/, ${B_SRCS:.c=.o})
 
-
 # ----------------------------------
 # Rules
 # ----------------------------------
-all:		$(OBJ_DIR) ${NAME} 
-
-bonus:		${OBJS} ${B_OBJS}
-			@${AR} ${ARFLAGS} ${NAME} $^
-			
 $(OBJ_DIR):
 			@$(MKDIR) $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 			@${CC} -c ${CFLAGS} -o $@ $< -I${INC_DIR}
 
 $(NAME):	${OBJS}
 			@${AR} ${ARFLAGS} $@ $^
+
+all:		$(OBJ_DIR) ${NAME} 
+
+bonus:		all $(B_OBJS)
+			@${AR} ${ARFLAGS} ${NAME} $(B_OBJS)
 
 clean:
 			@${RM} ${OBJS} ${B_OBJS}
@@ -146,7 +145,6 @@ fclean:		clean
 			@${RM} ${NAME}
 
 re:			fclean all
-
 
 
 .PHONY: 	all clean fclean re bonus
