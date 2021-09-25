@@ -6,7 +6,7 @@
 #    By: haseo <haseo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/18 00:09:02 by haseo             #+#    #+#              #
-#    Updated: 2021/09/24 21:36:44 by haseo            ###   ########.fr        #
+#    Updated: 2021/09/26 00:34:45 by haseo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,12 @@ WHITE			= \033[1;37m
 # ----------------------------------
 
 SRCS_LIST		=	push_swap.c \
-					swap.c
+					push_argv.c \
+					valid.c \
+					push.c \
+					swap.c \
+					rotate.c \
+					reverse_rotate.c
 
 
 SRCS			= $(addprefix $(SRC_DIR)/, $(SRCS_LIST))
@@ -65,12 +70,14 @@ OBJS			= $(addprefix $(OBJ_DIR)/, $(SRCS_LIST:.c=.o))
 # Directory
 # ----------------------------------
 
-LIBFT_DIR		= ./libft
-INC_DIR			= ./inc
-SRC_DIR			= ./src
-OBJ_DIR			= ./obj
-VPATH_DIR		= ./src \
-					./src/operation
+LIBFT_DIR		=	./libft
+INC_DIR			=	./inc
+SRC_DIR			=	./src
+OBJ_DIR			=	./obj
+VPATH_DIR		=	./src \
+					./src/validation \
+					./src/operation \
+					./src/sorting
 
 vpath %.c $(VPATH_DIR)
 

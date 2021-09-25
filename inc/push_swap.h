@@ -6,7 +6,7 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:30:58 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/24 21:13:46 by haseo            ###   ########.fr       */
+/*   Updated: 2021/09/26 00:38:20 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,23 @@ typedef struct	s_stack {
     t_node *bottom;
 }				t_stack;
 
+t_stack *alloc_stack(void);
+t_node *alloc_node(void);
+void free_stack(t_stack *stack);
+void push_argv(t_stack *stack, int argc, char *argv[]);
+void valid_dup(t_stack *stack);
+void valid_sort(t_stack *stack);
 
-void swap(t_stack *stack);
 void sa(t_stack *a);
 void sb(t_stack *b);
-
-
+void ss(t_stack *a, t_stack *b);
+void pa(t_stack *a, t_stack *b);
+void pb(t_stack *a, t_stack *b);
+void ra(t_stack *a);
+void rb(t_stack *b);
+void rr(t_stack *a, t_stack *b);
+void rra(t_stack *a);
+void rrb(t_stack *b);
+void rrr(t_stack *a, t_stack *b);
 
 #endif
