@@ -6,13 +6,13 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 18:42:28 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/24 21:39:00 by haseo            ###   ########.fr       */
+/*   Updated: 2021/09/26 00:15:37 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-void swap(t_stack *stack)
+static void swap(t_stack *stack)
 {
     t_node *first;
     t_node *second;
@@ -42,4 +42,11 @@ void sb(t_stack *b)
 {
     swap(b);
     ft_putstr("sb\n");
+}
+
+void ss(t_stack *a, t_stack *b)
+{
+    swap(a);
+    swap(b);
+    ft_putstr("ss\n");
 }

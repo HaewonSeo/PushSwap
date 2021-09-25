@@ -6,7 +6,7 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 18:11:31 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/24 22:03:03 by haseo            ###   ########.fr       */
+/*   Updated: 2021/09/26 00:01:29 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,12 @@ void print_stack(t_stack *stack)
     cur = stack->top;
     while (cur)
     {
+        ft_putchar_fd('[', 1);
         ft_putnbr_fd(cur->data, 1);
-        ft_putchar_fd('\n', 1);
+        ft_putstr("]\t");
         cur = cur->next;
     }
-    printf("[size=%d, top=%d, bottom=%d]\n", stack->size, stack->top->data, stack->bottom->data);
+    printf("\ntop:\t%d \nbottom:\t%d \nsize:\t%d\n", stack->size, stack->top->data, stack->bottom->data);
 }
 
 void free_stack(t_stack *stack)
@@ -177,6 +178,26 @@ void valid_sort(t_stack *stack)
     ft_exit("[Error] Stack is already sorted\n");
 }
 
+static void test(t_stack *a, t_stack *b)
+{
+    sa(a);
+    print_stack(a);
+
+    pb(a, b);
+    pb(a, b);
+    pb(a, b);
+    print_stack(a);
+    print_stack(b);
+
+    rr(a, b);
+    print_stack(a);
+    print_stack(b);
+
+    rrr(a, b);
+    print_stack(a);
+    print_stack(b);
+}
+
 int main(int argc, char *argv[])
 {
     t_stack *a;
@@ -192,9 +213,8 @@ int main(int argc, char *argv[])
     valid_sort(a);
     b = alloc_stack();
 
-    sa(a);
-    print_stack(a);
-    
+    test(a, b);
+
     //push_swap();
     
     free_stack(a);
