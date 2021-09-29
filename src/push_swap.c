@@ -6,23 +6,17 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 18:11:31 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/26 00:29:47 by haseo            ###   ########.fr       */
+/*   Updated: 2021/09/29 18:06:35 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-t_stack *alloc_stack(void)
+void init_stack(t_stack *stack)
 {
-    t_stack *stack;
-
-    stack = (t_stack *)malloc(sizeof(t_stack));
-    if (!stack)
-        ft_exit("[Error] fail to allocate a stack\n");
     stack->size = 0;
     stack->top = NULL;
     stack->bottom = NULL;
-    return (stack);
 }
 
 t_node *alloc_node(void)
@@ -38,7 +32,7 @@ t_node *alloc_node(void)
     return (node);
 }
 
-void free_stack(t_stack *stack)
+void free_stack_nodes(t_stack *stack)
 {
     t_node *node;
     t_node *tmp;
@@ -54,13 +48,17 @@ void free_stack(t_stack *stack)
         free(node);
         node = tmp;
     }
-    free(stack);
 }
 
 static void print_stack(t_stack *stack)
 {
     t_node *cur;
 
+    if (stack->size == 0)
+    {
+        printf("stack is empty\n");
+        return ;
+    }
     cur = stack->top;
     while (cur)
     {
@@ -69,7 +67,7 @@ static void print_stack(t_stack *stack)
         ft_putstr("]\t");
         cur = cur->next;
     }
-    printf("\ntop:\t%d \nbottom:\t%d \nsize:\t%d\n", stack->size, stack->top->data, stack->bottom->data);
+    printf("\ntop:\t%d \nbottom:\t%d \nsize:\t%d\n", stack->top->data, stack->bottom->data, stack->size);
 }
 
 static void test(t_stack *a, t_stack *b)
@@ -94,24 +92,25 @@ static void test(t_stack *a, t_stack *b)
 
 int main(int argc, char *argv[])
 {
-    t_stack *a;
-    t_stack *b;
+    t_stack a;
+    t_stack b;
     
     if (argc == 1)
         ft_exit("[Usage] ./push_swap arguments\n");
         
-    a = alloc_stack();
-    push_argv(a, argc, argv);
-    print_stack(a); //
-    valid_dup(a);
-    valid_sort(a);
-    b = alloc_stack();
+    init_stack(&a);
+    push_argv(&a, argc, argv);
+    print_stack(&a); //
+    valid_dup(&a);
+    valid_sort(&a);
+    init_stack(&b);
+    //test(&a, &b);
 
-    test(a, b);
-
-    //sort();
+    sort(&a, &b);
+    print_stack(&a);
+    print_stack(&b);
     
-    free_stack(a);
-    free_stack(b);
+    free_stack_nodes(&a);
+    free_stack_nodes(&b);
     return (0);
 }

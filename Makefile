@@ -6,7 +6,7 @@
 #    By: haseo <haseo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/18 00:09:02 by haseo             #+#    #+#              #
-#    Updated: 2021/09/26 00:34:45 by haseo            ###   ########.fr        #
+#    Updated: 2021/09/29 18:02:11 by haseo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME 			= push_swap
 # Compile flag
 # ----------------------------------
 CC				= gcc
-CFLAGS 			= -Wall -Wextra -Werror
+CFLAGS 			= -Wall -Wextra #-Werror
 # CFLAGS			+= -g3 -fsanitize=address
 # CFLAGS			+= -g
 
@@ -60,7 +60,10 @@ SRCS_LIST		=	push_swap.c \
 					push.c \
 					swap.c \
 					rotate.c \
-					reverse_rotate.c
+					reverse_rotate.c \
+					sort.c \
+					a_to_b.c \
+					b_to_a.c 
 
 
 SRCS			= $(addprefix $(SRC_DIR)/, $(SRCS_LIST))
