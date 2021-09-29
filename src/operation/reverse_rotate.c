@@ -6,7 +6,7 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 21:12:09 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/26 00:15:32 by haseo            ###   ########.fr       */
+/*   Updated: 2021/09/29 14:54:09 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ static void reverse_rotate(t_stack *stack)
 void rra(t_stack *a)
 {
     reverse_rotate(a);
-    ft_putstr("ra\n");
+    ft_putstr("rra\n");
 }
 
 void rrb(t_stack *b)
 {
     reverse_rotate(b);
-    ft_putstr("rb\n");
+    ft_putstr("rrb\n");
 }
 
 void rrr(t_stack *a, t_stack *b)
 {
     reverse_rotate(a);
     reverse_rotate(b);
-    ft_putstr("rr\n");
+    ft_putstr("rrr\n");
 }
