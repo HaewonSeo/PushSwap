@@ -61,11 +61,11 @@ SRCS_LIST		=	push_swap.c \
 					swap.c \
 					rotate.c \
 					reverse_rotate.c \
-					sort.c \
 					a_to_b.c \
 					b_to_a.c \
 					sort_small_a.c \
-					sort_small_b.c
+					sort_small_b.c \
+					utility.c
 
 
 SRCS			= $(addprefix $(SRC_DIR)/, $(SRCS_LIST))
@@ -105,7 +105,7 @@ $(OBJ_DIR):
 					@$(MKDIR) $@
 					@$(ECHO) "$(GREEN)[Success]\t $(ORANGE)Create $(OBJ_DIR)$(NOCOLOR)"
 
-$(OBJ_DIR)/%.o: %.c 
+$(OBJ_DIR)/%.o: %.c
 					@$(CC) -c $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -o $@ $^
 					@$(ECHO) "$(GREEN)[Success]\t $(ORANGE)Create $@$(NOCOLOR)"
 

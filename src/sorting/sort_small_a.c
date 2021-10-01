@@ -12,128 +12,94 @@
 
 #include "../../inc/push_swap.h"
 
-static void sort_only_three(t_stack *a, int min, int max)
+void	sort_a_two(t_stack *a)
 {
-    if (a->top->data == min && a->top->next->data == max)
-    {
-        rra(a);
-        sa(a);
-    }
-    else if (a->top->next->data == min)
-    {
-        if (a->top->data == max)
-            ra(a);
-        else
-            sa(a);
-    }
-    else if (a->top->next->next->data == min)
-    {
-        if (a->top->data == max)
-            sa(a);
-        rra(a);
-    }
+	if (a->top->data > a->top->next->data)
+		sa(a);
 }
 
-static void sort_three(t_stack *a, int min, int max)
+static void	sort_a_only_three(t_stack *a, int min, int max)
 {
-    if (a->top->data == min && a->top->next->data == max)
-    {
-        ra(a);
-        sa(a);
-        rra(a);
-    }
-    else if (a->top->next->data == min)
-    {
-        sa(a);
-        if (a->top->next->data == max)
-        {
-            ra(a);
-            sa(a);
-            rra(a);
-        }
-    }
-    else if (a->top->next->next->data == min)
-    {
-        if (a->top->data == max)
-            sa(a);
-        ra(a);
-        sa(a);
-        rra(a);
-        sa(a);
-    }
+	if (a->top->data == min && a->top->next->data == max)
+	{
+		rra(a);
+		sa(a);
+	}
+	else if (a->top->next->data == min)
+	{
+		if (a->top->data == max)
+			ra(a);
+		else
+			sa(a);
+	}
+	else if (a->top->next->next->data == min)
+	{
+		if (a->top->data == max)
+			sa(a);
+		rra(a);
+	}
 }
 
-void sort_a_three(t_stack *a)
+static void	sort_a_not_only_three(t_stack *a, int min, int max)
 {
-    int min;
-    int max;
-
-    min = get_min(a, 3);
-    max = get_max(a, 3);
-    if (a->size == 3)
-        sort_only_three(a, min, max);
-    else
-        sort_three(a, min, max);    
+	if (a->top->data == min && a->top->next->data == max)
+	{
+		ra(a);
+		sa(a);
+		rra(a);
+	}
+	else if (a->top->next->data == min)
+	{
+		sa(a);
+		if (a->top->next->data == max)
+		{
+			ra(a);
+			sa(a);
+			rra(a);
+		}
+	}
+	else if (a->top->next->next->data == min)
+	{
+		if (a->top->data == max)
+			sa(a);
+		ra(a);
+		sa(a);
+		rra(a);
+		sa(a);
+	}
 }
 
-void divide_a_four(t_stack *a, t_stack *b)
+void	sort_a_three(t_stack *a)
 {
-    int i;
-    int mid;
-    int cnt_pb;
-    int cnt_ra;
+	int	min;
+	int	max;
 
-    i = 4;
-    mid = get_mid(a, 4);
-    cnt_pb = 0;
-    cnt_ra = 0;
-    while (i-- && cnt_pb < 2)
-    {
-        if (a->top->data < mid)
-        {
-            pb(a, b);
-            cnt_pb++;
-        }
-        else
-        {
-            ra(a);
-            cnt_ra++;
-        }
-    }
-    if (a->size != 2)
-    {
-        while (cnt_ra--)
-            rra(a);
-    }
+	min = get_min(a, 3);
+	max = get_max(a, 3);
+	if (a->size == 3)
+		sort_a_only_three(a, min, max);
+	else
+		sort_a_not_only_three(a, min, max);
 }
 
-void divide_a_five(t_stack *a, t_stack *b)
+void	sort_small_a(t_stack *a, t_stack *b, int size)
 {
-    int i;
-    int mid;
-    int cnt_pb;
-    int cnt_ra;
-
-    i = 5;
-    mid = get_mid(a, 5);
-    cnt_pb = 0;
-    cnt_ra = 0;
-    while (i-- && cnt_pb < 2)
-    {
-        if (a->top->data < mid)
-        {
-            pb(a, b);
-            cnt_pb++;
-        }
-        else
-        {
-            ra(a);
-            cnt_ra++;
-        }
-    }
-    if (a->size != 3)
-    {
-        while (cnt_ra--)
-            rra(a);
-    }
+	if (size <= 1)
+		return ;
+	else if (size == 2)
+		sort_a_two(a);
+	else if (size == 3)
+		sort_a_three(a);
+	else if (size == 4)
+	{
+		divide_a_four(a, b, 4);
+		sort_a_two(a);
+		sort_b_two(a, b);
+	}
+	else if (size == 5)
+	{
+		divide_a_five(a, b, 5);
+		sort_a_three(a);
+		sort_b_two(a, b);
+	}
 }
