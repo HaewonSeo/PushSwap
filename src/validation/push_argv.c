@@ -6,7 +6,7 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:27:16 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/26 00:36:44 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/01 18:00:21 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ static long long argtoi(char *arg)
     while (arg[len])
     {
         if (!ft_isdigit(arg[len]))
-            ft_exit("[Error] Invalid argument value\n");
+            ft_exit("Error\n");
+            // ft_exit("[Error] Invalid argument value\n");
         num = num * 10 + (arg[len++] - '0');
     }
     num *= sign;
     if (len > 11 || num > MAXINT || num < MININT)
-        ft_exit("[Error] Invalid argument range\n");
+        ft_exit("Error\n");
+        // ft_exit("[Error] Invalid argument range\n");
     return (num);
 }
 
@@ -64,7 +66,8 @@ static void push_arg(t_stack *stack, char *arg)
     
     split = ft_split(arg, ' ');
     if (!split || !(*split))
-        ft_exit("[Error] Fail to allocate split\n");
+        ft_exit("Error\n");
+        // ft_exit("[Error] Fail to allocate split\n");
     i = -1;
     while(split[++i])
     {

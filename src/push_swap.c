@@ -6,7 +6,7 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 18:11:31 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/29 18:06:35 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/01 18:08:41 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,21 +94,31 @@ int main(int argc, char *argv[])
 {
     t_stack a;
     t_stack b;
+    int first;
     
     if (argc == 1)
-        ft_exit("[Usage] ./push_swap arguments\n");
-        
+        return (0);
+        // ft_exit("Error\n");
+        // ft_exit("[Usage] ./push_swap arguments\n");
     init_stack(&a);
-    push_argv(&a, argc, argv);
-    print_stack(&a); //
-    valid_dup(&a);
-    valid_sort(&a);
     init_stack(&b);
-    //test(&a, &b);
+    push_argv(&a, argc, argv);
+    
+    if (valid_dup(&a))
+        ft_exit("Error\n");
+    if (valid_a_sort(&a, a.size))
+        return (0);
 
-    sort(&a, &b);
-    print_stack(&a);
-    print_stack(&b);
+    //test(&a, &b);
+    first = 1;
+    a_to_b(&a, &b, a.size, &first);
+    
+    // if (valid_a_sort(&a, a.size))
+    //     printf("Sorted!\n");
+    // else
+    //     printf("Unsorted!\n");
+    // print_stack(&a);
+    // print_stack(&b);
     
     free_stack_nodes(&a);
     free_stack_nodes(&b);

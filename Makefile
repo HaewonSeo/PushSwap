@@ -6,7 +6,7 @@
 #    By: haseo <haseo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/18 00:09:02 by haseo             #+#    #+#              #
-#    Updated: 2021/09/29 18:02:11 by haseo            ###   ########.fr        #
+#    Updated: 2021/09/30 19:37:07 by haseo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,9 @@ SRCS_LIST		=	push_swap.c \
 					reverse_rotate.c \
 					sort.c \
 					a_to_b.c \
-					b_to_a.c 
+					b_to_a.c \
+					sort_small_a.c \
+					sort_small_b.c
 
 
 SRCS			= $(addprefix $(SRC_DIR)/, $(SRCS_LIST))

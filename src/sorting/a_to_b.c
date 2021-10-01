@@ -6,25 +6,16 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:31:55 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/29 19:02:37 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/01 16:09:33 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-static void sort_small_stack(t_stack *a, int size)
-{
-    if (size <= 1)
-        return ;
-    else if (size == 2)
-        if (a->top->data > a->bottom->data)
-            sa(a);
-}
-
 static void partition(t_stack *a, t_stack *b, t_var *var, int size)
 {
     int cnt_pb;
-
+    
     cnt_pb = 0;
     while (size--)
     {
@@ -47,44 +38,76 @@ static void partition(t_stack *a, t_stack *b, t_var *var, int size)
     var->size_s = cnt_pb - var->size_m;
 }
 
-static void locate(t_stack *a, t_stack *b, t_var *var)
+static void locate(t_stack *a, t_stack *b, t_var var, int first)
 {
-    int cnt_rrr;
-    int cnt_rest;
+    int rest;
 
-    if (var->size_l < var->size_m)
+    if (first)
     {
-        cnt_rrr = var->size_l;
-        cnt_rest = var->size_m - var->size_l;
-        while (cnt_rrr--)
+        while(var.size_m--)
+            rrb(b);
+    }
+    else if (var.size_l < var.size_m)
+    {
+        rest = var.size_m - var.size_l;
+        while (var.size_l--)
             rrr(a, b);
-        while (cnt_rest--)
+        while (rest--)
             rrb(b);
     }
     else
     {
-        cnt_rrr = var->size_m;
-        cnt_rest = var->size_l - var->size_m;
-        while (cnt_rrr--)
+        rest = var.size_l - var.size_m;
+        while (var.size_m--)
             rrr(a, b);
-        while (cnt_rest--)
+        while (rest--)
             rra(a);
     }
 }
 
-void a_to_b(t_stack *a, t_stack *b, int size)
+void sort_a_two(t_stack *a)
+{
+    if (a->top->data > a->top->next->data)
+        sa(a);
+}
+
+void sort_small_a(t_stack *a, t_stack *b, int size)
+{
+    if (size <= 1)
+        return ;
+    else if (size == 2)
+        sort_a_two(a);
+    else if (size == 3)
+        sort_a_three(a);
+    else if (size == 4)
+    {
+        divide_a_four(a, b);
+        sort_a_two(a);
+        sort_b_two(a, b);
+    }
+    else if (size == 5)
+    {
+        divide_a_five(a, b);
+        sort_a_three(a);
+        sort_b_two(a, b);
+    }
+}
+
+void a_to_b(t_stack *a, t_stack *b, int size, int *first)
 {
     t_var var;
 
-    if (size <= 2)
+    if (size <= 1 || valid_a_sort(a, size))
+        return ;
+    if (size <= 5)
     {
-        sort_small_stack(a, size);
+        sort_small_a(a, b, size);
         return ;
     }
     init_var(a, &var, size);
     partition(a, b, &var, size);
-    locate(a, b, &var);
-    a_to_b(a, b, var.size_l);
-    b_to_a(a, b, var.size_m);
-    b_to_a(a, b, var.size_s);
+    locate(a, b, var, *first);
+    a_to_b(a, b, var.size_l, first);
+    b_to_a(a, b, var.size_m, first);
+    b_to_a(a, b, var.size_s, first);
 }

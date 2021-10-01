@@ -6,7 +6,7 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:30:58 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/29 17:40:43 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/01 16:09:49 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ void			init_stack(t_stack *stack);
 t_node			*alloc_node(void);
 void			free_stack_nodes(t_stack *stack);
 void			push_argv(t_stack *stack, int argc, char *argv[]);
-void			valid_dup(t_stack *stack);
-void			valid_sort(t_stack *stack);
+int     		valid_dup(t_stack *stack);
+int    			valid_a_sort(t_stack *a, int size);
+int             valid_b_sort(t_stack *b, int size);
 
 void			sa(t_stack *a);
 void			sb(t_stack *b);
@@ -71,10 +72,20 @@ void			rra(t_stack *a);
 void			rrb(t_stack *b);
 void			rrr(t_stack *a, t_stack *b);
 
+int             get_min(t_stack *stack, int size);
+int             get_max(t_stack *stack, int size);
+void            init_var(t_stack *stack, t_var *var, int size);
+void            a_to_b(t_stack *a, t_stack *b, int size, int *first);
+void            b_to_a(t_stack *a, t_stack *b, int size, int *first);
+void            quick_sort(int arr[], int l, int r);
+int             get_mid(t_stack *stack, int size);
 
-void init_var(t_stack *stack, t_var *var, int size);
-void a_to_b(t_stack *a, t_stack *b, int size);
-void b_to_a(t_stack *a, t_stack *b, int size);
-void sort(t_stack *a, t_stack *b);
-
+void divide_a_four(t_stack *a, t_stack *b);
+void divide_a_five(t_stack *a, t_stack *b);
+void divide_b_four(t_stack *a, t_stack *b);
+void divide_b_five(t_stack *a, t_stack *b);
+void sort_a_two(t_stack *a);
+void sort_b_two(t_stack *a, t_stack *b);
+void sort_a_three(t_stack *a);
+void sort_b_three(t_stack *a, t_stack *b);
 #endif
