@@ -6,7 +6,7 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 03:17:02 by haseo             #+#    #+#             */
-/*   Updated: 2021/10/02 01:24:08 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 17:38:50 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 #  define OPEN_MAX 10240
 # endif
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}				t_list;
 
 /*
 ** Part 1
@@ -54,8 +54,8 @@ size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
-char				*ft_strnstr(const char *big, const char *little,
-								size_t len);
+char				*ft_strnstr(const char *big, const char *little, \
+															size_t len);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 
 /*
@@ -111,8 +111,8 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(char *));
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-								void (*del)(void *));
+t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), \
+														void (*del)(void *));
 
 /*
 ** ft_printf
@@ -141,5 +141,7 @@ size_t				ft_cntword(char const *s, char c);
 /*
 ** push_swap
 */
+
 int					ft_strcmp(const char *s1, const char *s2);
+
 #endif

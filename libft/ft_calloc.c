@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haseo <haseo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 11:58:46 by haseo             #+#    #+#             */
-/*   Updated: 2020/11/23 02:42:15 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 17:30:51 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	*ft_calloc(size_t number, size_t size)
 {
-	void *mem;
+	void	*mem;
 
-	if (!(mem = malloc(number * size)))
+	mem = malloc(number * size);
+	if (!mem)
 		return (NULL);
 	ft_bzero(mem, (number * size));
 	return (mem);

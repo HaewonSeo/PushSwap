@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoabase.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haseo <haseo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 17:38:31 by haseo             #+#    #+#             */
-/*   Updated: 2021/02/22 15:00:43 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 17:31:54 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_nbrlen(long n, int base)
+static int	ft_nbrlen(long n, int base)
 {
 	int		len;
 
@@ -27,7 +27,7 @@ static int		ft_nbrlen(long n, int base)
 	return (len);
 }
 
-static char		*ft_getbaseset(char type)
+static char	*ft_getbaseset(char type)
 {
 	if (type == 'd' || type == 'i' || type == 'u')
 		return ("0123456789");
@@ -39,7 +39,7 @@ static char		*ft_getbaseset(char type)
 		return (NULL);
 }
 
-char			*ft_itoabase(long nbr, char type)
+char	*ft_itoabase(long nbr, char type)
 {
 	char	*baseset;
 	int		base;
@@ -49,7 +49,8 @@ char			*ft_itoabase(long nbr, char type)
 	baseset = ft_getbaseset(type);
 	base = ft_strlen(baseset);
 	len = ft_nbrlen(nbr, base);
-	if (!(str = ft_calloc(len + 1, sizeof(char))))
+	str = ft_calloc(len + 1, sizeof(char));
+	if (!str)
 		return (NULL);
 	while (len)
 	{

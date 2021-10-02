@@ -6,7 +6,7 @@
 #    By: haseo <haseo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 16:49:36 by haseo             #+#    #+#              #
-#    Updated: 2021/10/02 16:12:07 by haseo            ###   ########.fr        #
+#    Updated: 2021/10/02 16:47:48 by haseo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,6 +124,12 @@ B_OBJS		= $(addprefix $(OBJ_DIR)/, ${B_SRCS:.c=.o})
 # ----------------------------------
 # Rules
 # ----------------------------------
+
+all:		$(OBJ_DIR) ${OBJS} ${NAME}
+
+bonus:		all $(B_OBJS)
+			@${AR} ${ARFLAGS} ${NAME} $(B_OBJS)
+
 $(OBJ_DIR):
 			@$(MKDIR) $@
 
@@ -133,12 +139,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 $(NAME):	${OBJS}
 			@${AR} ${ARFLAGS} $@ $^
 			@$(ECHO) "$(GREEN)[Success]\t $(BLUE)Create $@ \t$(NOCOLOR)"
-
-
-all:		$(OBJ_DIR) ${NAME}
-
-bonus:		all $(B_OBJS)
-			@${AR} ${ARFLAGS} ${NAME} $(B_OBJS)
 
 clean:
 			@${RM} ${OBJS} ${B_OBJS}

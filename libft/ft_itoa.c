@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haseo <haseo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 17:04:13 by haseo             #+#    #+#             */
-/*   Updated: 2021/02/22 17:04:14 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 17:39:30 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static size_t	ft_intlen(long n)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	if (n <= 0)
@@ -27,7 +27,7 @@ static size_t	ft_intlen(long n)
 	return (len);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	size_t	len;
@@ -37,7 +37,8 @@ char			*ft_itoa(int n)
 	nbr = n;
 	pos = 1;
 	len = ft_intlen(nbr);
-	if (!(str = ft_calloc(len + 1, sizeof(char))))
+	str = ft_calloc(len + 1, sizeof(char));
+	if (!str)
 		return (NULL);
 	if (nbr < 0)
 	{

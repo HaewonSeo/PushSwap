@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haseo <haseo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 00:54:06 by haseo             #+#    #+#             */
-/*   Updated: 2020/11/23 02:49:21 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 17:35:21 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (!s || !f)
 		return (NULL);
 	i = 0;
-	if (!(str = ft_calloc(ft_strlen(s) + 1, sizeof(char))))
+	str = ft_calloc(ft_strlen(s) + 1, sizeof(char));
+	if (!str)
 		return (NULL);
 	while (s[i])
 	{

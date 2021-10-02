@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haseo <haseo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 18:01:58 by haseo             #+#    #+#             */
-/*   Updated: 2020/11/23 02:51:17 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 17:35:54 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (start >= (unsigned int)ft_strlen(s))
 		return (ft_strdup(""));
-	if (!(substr = ft_calloc(len + 1, sizeof(char))))
+	substr = ft_calloc(len + 1, sizeof(char));
+	if (!substr)
 		return (NULL);
 	while (s[start + i] && i < len)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haseo <haseo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:09:14 by haseo             #+#    #+#             */
-/*   Updated: 2021/01/27 01:29:14 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 17:34:43 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ char	*ft_strdup(const char *str)
 	int		i;
 	char	*dst;
 
-	if (!(dst = (char *)malloc(sizeof(char) * ft_strlen(str) + 1)))
+	dst = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
+	if (!dst)
 		return (NULL);
 	i = 0;
 	while (str[i])
