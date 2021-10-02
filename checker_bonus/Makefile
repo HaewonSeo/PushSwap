@@ -6,7 +6,7 @@
 #    By: haseo <haseo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/18 00:09:02 by haseo             #+#    #+#              #
-#    Updated: 2021/10/02 16:23:15 by haseo            ###   ########.fr        #
+#    Updated: 2021/10/02 16:41:24 by haseo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,8 +61,7 @@ SRCS_LIST		=	checker.c \
 					push.c \
 					swap.c \
 					rotate.c \
-					reverse_rotate.c \
-					get_next_line_bonus.c
+					reverse_rotate.c
 
 
 SRCS			= $(addprefix $(SRC_DIR)/, $(SRCS_LIST))
@@ -79,8 +78,7 @@ SRC_DIR			=	./src
 OBJ_DIR			=	./obj
 VPATH_DIR		=	./src \
 					./src/validation \
-					./src/operation \
-					./src/get_next_line
+					./src/operation
 
 vpath %.c $(VPATH_DIR)
 
