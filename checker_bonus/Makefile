@@ -6,12 +6,12 @@
 #    By: haseo <haseo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/18 00:09:02 by haseo             #+#    #+#              #
-#    Updated: 2021/10/02 16:23:12 by haseo            ###   ########.fr        #
+#    Updated: 2021/10/02 16:23:15 by haseo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 			= push_swap
-CHECKER			= checker
+NAME 			= checker
+
 # ----------------------------------
 # Compile flag
 # ----------------------------------
@@ -24,7 +24,7 @@ CFLAGS 			= -Wall -Wextra -Werror
 # Command
 # ----------------------------------
 
-CP				= cp
+MV				= move
 RM				= rm -f
 MKDIR			= mkdir -p
 RMDIR			= rm -rf
@@ -55,18 +55,14 @@ WHITE			= \033[1;37m
 # Source & Object file
 # ----------------------------------
 
-SRCS_LIST		=	push_swap.c \
+SRCS_LIST		=	checker.c \
 					push_argv.c \
 					valid.c \
 					push.c \
 					swap.c \
 					rotate.c \
 					reverse_rotate.c \
-					a_to_b.c \
-					b_to_a.c \
-					sort_small_a.c \
-					sort_small_b.c \
-					utility.c
+					get_next_line_bonus.c
 
 
 SRCS			= $(addprefix $(SRC_DIR)/, $(SRCS_LIST))
@@ -76,15 +72,15 @@ OBJS			= $(addprefix $(OBJ_DIR)/, $(SRCS_LIST:.c=.o))
 # Directory
 # ----------------------------------
 
-LIBFT_DIR		=	./libft
-CHECKER_DIR		=	./checker_bonus
+LIBFT_DIR		=	../libft
+CUR_DIR			=	checker_bonus
 INC_DIR			=	./inc
 SRC_DIR			=	./src
 OBJ_DIR			=	./obj
 VPATH_DIR		=	./src \
 					./src/validation \
 					./src/operation \
-					./src/sorting
+					./src/get_next_line
 
 vpath %.c $(VPATH_DIR)
 
@@ -101,18 +97,13 @@ LIB				= -lft
 
 all:			$(OBJ_DIR) $(LIBFT) $(NAME)
 
-bonus:			all
-					@$(MAKE) -C $(CHECKER_DIR)
-					@$(CP) $(CHECKER_DIR)/$(CHECKER) .
-					@$(ECHO) "$(GREEN)[Success]\t $(ORANGE)Copy $(CHECKER_DIR)/$(CHECKER) .$(NOCOLOR)"
-
 $(OBJ_DIR):
 					@$(MKDIR) $@
-					@$(ECHO) "$(GREEN)[Success]\t $(ORANGE)Create $(OBJ_DIR)$(NOCOLOR)"
+					@$(ECHO) "$(GREEN)[Success]\t $(ORANGE)Create $(CUR_DIR)/obj$(NOCOLOR)"
 
 $(OBJ_DIR)/%.o: %.c
 					@$(CC) -c $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -o $@ $^
-					@$(ECHO) "$(GREEN)[Success]\t $(ORANGE)Create $@$(NOCOLOR)"
+					@$(ECHO) "$(GREEN)[Success]\t $(ORANGE)Create $(CUR_DIR)/$@$(NOCOLOR)"
 
 $(LIBFT):
 					@$(MAKE) -C $(LIBFT_DIR) bonus
@@ -123,18 +114,15 @@ $(NAME):		$(OBJS)
 
 clean:
 					@$(MAKE) -C $(LIBFT_DIR) clean
-					$(MAKE) -C $(CHECKER_DIR) clean
 					@$(RM) $(OBJS)
 					@$(RMDIR) $(OBJ_DIR)
 					@$(ECHO) "$(GREEN)[Success]\t $(RED)Remove $(NAME)/$(OBJ_DIR)$(NOCOLOR)"
 
 fclean:			clean
 					@$(MAKE) -C $(LIBFT_DIR) fclean
-					@$(MAKE) -C $(CHECKER_DIR) fclean
 					@$(RM) $(NAME)
-					@$(RM) $(CHECKER)
 					@$(ECHO) "$(GREEN)[Success]\t $(RED)Remove $(NAME)$(NOCOLOR)"
 
 re:				fclean all
 
-.PHONY: 		all bonus clean fclean re
+.PHONY: 		all clean fclean re
