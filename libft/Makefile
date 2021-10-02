@@ -6,7 +6,7 @@
 #    By: haseo <haseo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 16:49:36 by haseo             #+#    #+#              #
-#    Updated: 2021/09/23 15:28:39 by haseo            ###   ########.fr        #
+#    Updated: 2021/10/02 01:24:22 by haseo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,8 @@ SRCS =		ft_memset.c \
 			ft_isformat.c \
 			ft_free2d.c \
 			ft_isdigit_str.c \
-			ft_cntword.c
+			ft_cntword.c \
+			ft_strcmp.c
 
 B_SRCS =	ft_lstnew.c \
 			ft_lstadd_front.c \
@@ -132,7 +133,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 $(NAME):	${OBJS}
 			@${AR} ${ARFLAGS} $@ $^
 
-all:		$(OBJ_DIR) ${NAME} 
+all:		$(OBJ_DIR) ${NAME}
 
 bonus:		all $(B_OBJS)
 			@${AR} ${ARFLAGS} ${NAME} $(B_OBJS)
