@@ -6,11 +6,11 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 21:12:09 by haseo             #+#    #+#             */
-/*   Updated: 2021/10/01 01:58:09 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 00:06:36 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/push_swap.h"
+#include "push_swap.h"
 
 static void	reverse_rotate(t_stack *stack)
 {

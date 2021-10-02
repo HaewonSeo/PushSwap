@@ -6,11 +6,11 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:27:16 by haseo             #+#    #+#             */
-/*   Updated: 2021/10/01 18:00:21 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 00:05:52 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/push_swap.h"
+#include "push_swap.h"
 
 static t_node	*alloc_node(void)
 {

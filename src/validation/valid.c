@@ -6,11 +6,11 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 12:15:55 by haseo             #+#    #+#             */
-/*   Updated: 2021/10/01 18:49:21 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 00:05:46 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/push_swap.h"
+#include "push_swap.h"
 
 int	valid_dup(t_stack *stack)
 {

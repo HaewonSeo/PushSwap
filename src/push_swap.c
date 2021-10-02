@@ -6,11 +6,11 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 18:11:31 by haseo             #+#    #+#             */
-/*   Updated: 2021/10/01 18:08:41 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 00:05:39 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 static void	init_stack(t_stack *stack)
 {

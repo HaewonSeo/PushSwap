@@ -6,11 +6,11 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 16:21:04 by haseo             #+#    #+#             */
-/*   Updated: 2021/10/01 16:12:40 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 00:06:13 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/push_swap.h"
+#include "push_swap.h"
 
 void	divide_b_four(t_stack *a, t_stack *b, int size)
 {
@@ -77,7 +77,7 @@ static void	partition_b_to_a(t_stack *a, t_stack *b, t_var *var, int size)
 	cnt_pa = 0;
 	while (size--)
 	{
-		if (b->top->data <= var->pivot_s)
+		if (b->top->data < var->pivot_s)
 		{
 			rb(b);
 			var->size_s++;
@@ -86,7 +86,7 @@ static void	partition_b_to_a(t_stack *a, t_stack *b, t_var *var, int size)
 		{
 			pa(a, b);
 			cnt_pa++;
-			if (a->top->data <= var->pivot_l)
+			if (a->top->data < var->pivot_l)
 			{
 				ra(a);
 				var->size_m++;

@@ -6,7 +6,7 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:30:58 by haseo             #+#    #+#             */
-/*   Updated: 2021/10/01 16:09:49 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 01:51:57 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include	"../libft/libft.h"
-# include	<stdio.h>
 
 # define MAXINT		2147483647
 # define MININT		-2147483648

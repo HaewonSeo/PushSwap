@@ -6,11 +6,11 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 21:12:26 by haseo             #+#    #+#             */
-/*   Updated: 2021/09/25 21:03:41 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 00:06:38 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/push_swap.h"
+#include "push_swap.h"
 
 static void	push_src_one(t_stack *src, t_stack *dst)
 {

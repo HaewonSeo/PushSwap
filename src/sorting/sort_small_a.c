@@ -6,11 +6,11 @@
 /*   By: haseo <haseo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 18:33:17 by haseo             #+#    #+#             */
-/*   Updated: 2021/10/01 16:55:58 by haseo            ###   ########.fr       */
+/*   Updated: 2021/10/02 00:06:09 by haseo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/push_swap.h"
+#include "push_swap.h"
 
 void	sort_a_two(t_stack *a)
 {
