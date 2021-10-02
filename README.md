@@ -23,4 +23,4 @@ This project will make you sort data on a stack, with a limited set of instructi
 + rrr : rra and rrb at the same time.
 
 ### Quick Sort with 2 Pivots
-+ Time complexity $$ \frac{5}{3}N * lon_3 N $$
++ Time complexity $$\frac{5}{3}N * lon_3 N$$
